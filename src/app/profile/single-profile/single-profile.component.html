@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h2>{{ profile?.firstName }}</h2>
+		<h3>{{ profile?.lastName }}</h3>
+		<p> age : {{ profile?.age }} ans</p>
+		<p>	Techno : {{ profile?.techno }} </p>
+		
+
+		<button class="btn btn-primary" (click)="onBack()">Retour</button>
+		<button class="btn btn-warning" (click)="onBack()">Exporter PDF</button>
+	</div>
+</div>
