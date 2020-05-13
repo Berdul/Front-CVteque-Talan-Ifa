@@ -3,18 +3,19 @@
 <div class="list-group">
 	<div class="row shadow bg-white " 
 		 style="border:solid grey 0.5px;" 
-		*ngFor="let profile of profiles; let i = index"
+		*ngFor="let profile of jsonProfiles._embedded.profiles; let i = index"
 		(click)="onViewProfile(i)">
 
 		<div class="col-6 " >
 			<div class="list-group">
 				<h3 class="list-group-item-heading">
-					{{ profile.firstName }}
+					{{ profile?.firstName }}
 				</h3>
 				<p>
-					{{ profile.lastName }}
-				</p>						
+					{{ profile?.lastName }}
+				</p>				
 			</div>
 		</div>
+		<div>{{ profile }}</div>
 	</div> 
 </div>

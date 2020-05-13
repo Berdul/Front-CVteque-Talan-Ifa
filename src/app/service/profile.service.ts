@@ -3,6 +3,8 @@ import { Profile } from '../model/profile.model';
 import { Subject } from 'rxjs-compat';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class ProfileService {
 	profilesSubject = new Subject<Profile[]>(); 
 
     constructor(private http: HttpClient) {
-    	this.profileUrl = 'http://localhost:8080/listProfile';
+    	this.profileUrl = 'http://localhost:8080/api/profiles';
     }
 
     emitProfilesSubject(){
@@ -29,6 +31,8 @@ export class ProfileService {
     }
 
     public findAllProfiles(): Observable<Profile[]>{
-		return this.http.get<Profile[]>(this.profileUrl);
+		return this.http.get<Profile[]>(this.profileUrl).pipe(
+            map(response =>response)
+         );
 	}
 }

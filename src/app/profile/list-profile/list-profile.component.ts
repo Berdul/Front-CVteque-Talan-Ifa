@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs-compat';
 })
 export class ListProfileComponent implements OnInit {
 
-	profiles : Profile[] = [];
+	jsonProfiles : Profile[] = [];
 
 	profilesSubscription : Subscription;
 
@@ -23,26 +23,17 @@ export class ListProfileComponent implements OnInit {
 		console.log("ngOnInit listProfile begin");
 
 		this.profileService.findAllProfiles().subscribe(data => {
-			this.profiles = data;
-			console.log(data);
+			this.jsonProfiles = data;
+			console.log(JSON.stringify(data));
 		});
-		/*
-		this.profilesSubscription = this.profileService.profilesSubject.subscribe(
-			(profiles: Profile []) => {
-				this.profiles = profiles;
-				console.log(this.profiles);
-			}
-		);
-		this.profileService.emitProfilesSubject();
-
-		console.log("ngOnInit listProfile profiles :  " + this.profiles[0]);
-		*/
+	
 		console.log("ngOnInit listProfile end");
 	}
+
+	
 
 	onViewProfile(id : number){
 		this.router.navigate(['/ListProfile','view',id]);
 	}
-
 
 }
