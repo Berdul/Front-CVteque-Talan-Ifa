@@ -15,10 +15,10 @@ export class ProfileService {
 
 	private profileUrl : string;
 
-	profilesSubject = new Subject<Profile[]>(); 
+	profilesSubject = new Subject<Profile[]>();
 
     constructor(private http: HttpClient) {
-    	this.profileUrl = 'http://localhost:8080/api/profiles';
+    	this.profileUrl = 'http://localhost:8080/profiles';
     }
 
     emitProfilesSubject(){

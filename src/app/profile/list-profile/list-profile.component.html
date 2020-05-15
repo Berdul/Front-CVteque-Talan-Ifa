@@ -1,21 +1,22 @@
 <h3>Liste des profiles</h3>
 
-<div class="list-group">
-	<div class="row shadow bg-white " 
-		 style="border:solid grey 0.5px;" 
-		*ngFor="let profile of jsonProfiles._embedded.profiles; let i = index"
-		(click)="onViewProfile(i)">
+<div class="row">
+  <div class="col-4 list-group">
+    <div *ngFor="let profile of jsonProfiles._embedded.profiles; let i = index"
+        (click)="onViewProfile(i)">
+      <div class="list-group shadow bg-white m-1 p-2 border border-secondary rounded">
+        <h3 class="list-group-item-heading">
+          {{ profile?.firstName }}
+        </h3>
+        <p >
+          {{ profile?.lastName }}
+        </p>
+      </div>
 
-		<div class="col-6 " >
-			<div class="list-group">
-				<h3 class="list-group-item-heading">
-					{{ profile?.firstName }}
-				</h3>
-				<p>
-					{{ profile?.lastName }}
-				</p>				
-			</div>
-		</div>
-		<div>{{ profile }}</div>
-	</div> 
+    </div>
+  </div>
+
+  <div class="col-8 shadow bg-white border border-dark">
+
+  </div>
 </div>
