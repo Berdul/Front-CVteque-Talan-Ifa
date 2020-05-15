@@ -1,10 +1,10 @@
 <h3>Liste des profiles</h3>
 
 <div class="row">
-  <div class="col-4 list-group">
+  <div class="col-4 p-1 list-group ">
     <div *ngFor="let profile of jsonProfiles; let i = index"
         (click)="onViewProfile(i)">
-      <div class="list-group shadow bg-white m-1 p-2 border border-secondary rounded">
+      <div class="list-group-item bg-white p-2 ">
         <h3 class="list-group-item-heading">
           {{ profile?.firstName }}
         </h3>
@@ -16,23 +16,25 @@
     </div>
   </div>
 
-  <div class="col-8 shadow bg-white border border-dark">
-    <!--
-    <div id="screenId">
-      <h2>Prenom : {{ profile?.firstName }}</h2>
-      <h3>Nom : {{ profile?.lastName }}</h3>
-      <p>Nationnalité : {{ profile?.nationality }}</p>
-      <p>Date de naissance : {{ profile?.dateOfBirth }}</p>
-      <p>Adresse : {{ profile?.address }}</p>
-      <p>Code postal : {{ profile?.zip }}</p>
-      <p>Numero de téléphone : {{ profile?.phoneNumber }}</p>
-      <p>Email : {{ profile?.email }}</p>
-      <p> N° profil : {{ profile?.profileId }} </p>
-    </div>
+  <div class="col-8 p-3 bg-white shadow border border-secondary rounded">
+    <div *ngIf="isProfileSelected">
+      <div id="screenId">
+        <h2>Prenom : {{ selectedProfile?.firstName }}</h2>
+        <h3>Nom : {{ selectedProfile?.lastName }}</h3>
+        <p>Nationnalité : {{ selectedProfile?.nationality }}</p>
+        <p>Date de naissance : {{ selectedProfile?.dateOfBirth }}</p>
+        <p>Adresse : {{ selectedProfile?.address }}</p>
+        <p>Code postal : {{ selectedProfile?.zip }}</p>
+        <p>Numero de téléphone : {{ selectedProfile?.phoneNumber }}</p>
+        <p>Email : {{ selectedProfile?.email }}</p>
+        <p> N° profil : {{ selectedProfile?.profileId }} </p>
+      </div>
 
-      <button class="btn btn-primary" (click)="onBack()">Retour</button>
       <button class="btn btn-warning" (click)="onExport()">Exporter PDF</button>
     </div>
-    -->
+
+    <div *ngIf="!isProfileSelected">
+      <h5 class="text-center font-weight-bold font-italic text-muted">Selectionnez un profil</h5>
+    </div>
   </div>
 </div>

@@ -6,6 +6,15 @@ import { ProfileService } from '../../service/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../model/profile.model';
 
+/*
+
+ *    ! OUTDATED FILE & COMPONENT!
+
+ *     this template was used for another website architecture.
+
+*/
+
+
 @Component({
   selector: 'app-single-profile',
   templateUrl: './single-profile.component.html',
@@ -29,7 +38,7 @@ export class SingleProfileComponent implements OnInit {
 		this.profileService.findProfileById(+id).subscribe(
 
 			data => {
-				console.log('>>data : ' + data);
+				console.log('>>data : ' + JSON.stringify(data));
 				this.profile = data;
 			}
 		);

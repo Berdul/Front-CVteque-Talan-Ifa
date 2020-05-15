@@ -26,7 +26,7 @@ export class ProfileService {
     }
 
     findProfileById( id: number){
-    	console.log(this.profiles[id]);
+    	console.log(">>profile.service findProfileById");
     	return this.http.get<Profile>(this.profileUrl + "/" + id);
     }
 
