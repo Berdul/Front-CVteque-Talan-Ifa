@@ -1,5 +1,5 @@
 export class Profile {
-
+  public _embedded : any;
 	public profileId: number;
 	public links: string[];
 	public photoFileName: string;
@@ -14,6 +14,4 @@ export class Profile {
 				public phoneNumber: number,
 				public email: string,
 				public profileMainType: number){}
-
-
 }

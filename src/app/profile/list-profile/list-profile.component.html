@@ -1,9 +1,10 @@
-<h3>Liste des profiles</h3>
+<h3>Liste des profils</h3>
 
 <div class="row">
-  <div class="col-4 p-1 list-group ">
+  <div class="col-4 p-1 list-group">
     <div *ngFor="let profile of jsonProfiles; let i = index"
-        (click)="onViewProfile(i)">
+         (click)="onViewProfile(i)"
+         style="cursor: pointer">
       <div class="list-group-item bg-white p-2 ">
         <h3 class="list-group-item-heading">
           {{ profile?.firstName }}
@@ -16,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-8 p-3 bg-white shadow border border-secondary rounded">
+  <div class="col-8 p-3 bg-white shadow border border-secondary rounded test">
     <div *ngIf="isProfileSelected">
       <div id="screenId">
         <h2>Prenom : {{ selectedProfile?.firstName }}</h2>

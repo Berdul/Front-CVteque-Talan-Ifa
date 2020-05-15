@@ -38,9 +38,8 @@ export class ListProfileComponent implements OnInit {
 
 	onViewProfile(id : number){
 	  console.log(">>jsonProfiles[0].profileId : " + JSON.stringify(this.jsonProfiles[0].profileId));
-	  if(this.isProfileSelected == false) {
-	    this.isProfileSelected = true;
-    }
+	  if(this.isProfileSelected == false) this.isProfileSelected = true;
+
 	  console.log("this.isProfileSelected : " + this.isProfileSelected);
 
 

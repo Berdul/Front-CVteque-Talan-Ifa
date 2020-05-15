@@ -9,30 +9,45 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ProfileService {
 
 	private profiles: Profile[] = [] ;
+
+	private urlEmbedded = "_embedded.profiles";
 
 	private profileUrl : string;
 
 	profilesSubject = new Subject<Profile[]>();
 
-    constructor(private http: HttpClient) {
-    	this.profileUrl = 'http://localhost:8080/profiles';
-    }
+  constructor(private http: HttpClient) {
+    this.profileUrl = 'http://localhost:8080/profiles';
+  }
 
-    emitProfilesSubject(){
-    	this.profilesSubject.next(this.profiles);
-    }
+  emitProfilesSubject(){
+    this.profilesSubject.next(this.profiles);
+  }
 
-    findProfileById( id: number){
-    	console.log(">>profile.service findProfileById");
-    	return this.http.get<Profile>(this.profileUrl + "/" + id);
-    }
+  findProfileById( id: number){
+    console.log(">>profile.service findProfileById");
+    return this.http.get<Profile>(this.profileUrl + "/" + id);
+  }
 
-    public findAllProfiles(): Observable<Profile[]>{
-		return this.http.get<Profile[]>(this.profileUrl).pipe(
-            map(response =>response._embedded.profiles)
-         );
-	}
+  public findAllProfiles(): Observable<Profile[]>{
+  return this.http.get<GetResponse>(this.profileUrl).pipe(
+          map(response => response._embedded.profiles)
+       );
+  }
+
+  public exportProfil(json: string) {
+    return this.http.get('http://localhost:8081/testapp/getdetails'+ '/?criteria='+ encodeURIComponent( JSON.stringify(json)));
+  }
+}
+
+interface GetResponse{
+  _embedded: {
+    profiles: Profile[];
+  }
 }
