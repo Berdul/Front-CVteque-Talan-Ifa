@@ -36,6 +36,7 @@ export class ListProfileComponent implements OnInit {
 		console.log("ngOnInit listProfile end");
 	}
 
+
 	onViewProfile(id : number){
 	  console.log(">>jsonProfiles[0].profileId : " + JSON.stringify(this.jsonProfiles[0].profileId));
 	  if(this.isProfileSelected == false) this.isProfileSelected = true;
@@ -52,12 +53,25 @@ export class ListProfileComponent implements OnInit {
     );
 	}
 
+	//onClick export button to export the profile
   onExport() {
+    console.log(">>list-profile onExport");
+    //this.htmlToImgtoPdf();
+    //this.profileService.exportProfil(this.selectedProfile);
     this.getHtmlContent();
   }
 
+  //Convert HTML from the <div id="screenId"> to a new pdf file
+  getHtmlContent(){
+	  const pdf = new jsPDF('p', 'mm', 'a4', 1);
+    const div = document.getElementById('screenId');
+	  pdf.fromHTML(div,15,15);
+    pdf.save('testPdf.pdf');
 
-  getHtmlContent() {
+  }
+
+  //Take a "screenshot" of the <div id="screenId"> of the browser and save it to a new Pdf file
+  htmlToImgtoPdf() {
     const div = document.getElementById('screenId');
 
     html2canvas(div).then((canvas) => {

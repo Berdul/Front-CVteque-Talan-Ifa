@@ -16,6 +16,8 @@ export class ProfileService {
 
 	private profiles: Profile[] = [] ;
 
+	private profile
+
 	private urlEmbedded = "_embedded.profiles";
 
 	private profileUrl : string;
@@ -41,8 +43,9 @@ export class ProfileService {
        );
   }
 
-  public exportProfil(json: string) {
-    return this.http.get('http://localhost:8081/testapp/getdetails'+ '/?criteria='+ encodeURIComponent( JSON.stringify(json)));
+  public exportProfil(json) {
+    console.log(">> profile.service exportProfile()");
+    return this.http.post('http://localhost:8081/testapp/getdetails', json).subscribe(res => res);
   }
 }
 
