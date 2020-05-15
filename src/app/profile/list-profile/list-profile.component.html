@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-4 list-group">
-    <div *ngFor="let profile of jsonProfiles._embedded.profiles; let i = index"
+    <div *ngFor="let profile of jsonProfiles; let i = index"
         (click)="onViewProfile(i)">
       <div class="list-group shadow bg-white m-1 p-2 border border-secondary rounded">
         <h3 class="list-group-item-heading">
@@ -17,6 +17,22 @@
   </div>
 
   <div class="col-8 shadow bg-white border border-dark">
+    <!--
+    <div id="screenId">
+      <h2>Prenom : {{ profile?.firstName }}</h2>
+      <h3>Nom : {{ profile?.lastName }}</h3>
+      <p>Nationnalité : {{ profile?.nationality }}</p>
+      <p>Date de naissance : {{ profile?.dateOfBirth }}</p>
+      <p>Adresse : {{ profile?.address }}</p>
+      <p>Code postal : {{ profile?.zip }}</p>
+      <p>Numero de téléphone : {{ profile?.phoneNumber }}</p>
+      <p>Email : {{ profile?.email }}</p>
+      <p> N° profil : {{ profile?.profileId }} </p>
+    </div>
 
+      <button class="btn btn-primary" (click)="onBack()">Retour</button>
+      <button class="btn btn-warning" (click)="onExport()">Exporter PDF</button>
+    </div>
+    -->
   </div>
 </div>

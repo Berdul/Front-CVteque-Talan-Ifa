@@ -1,10 +1,10 @@
 export class Profile {
 
-	public id: number;
+	public profileId: number;
 	public links: string[];
 	public photoFileName: string;
 	public profilePassword: string;
-	
+
 	constructor(public firstName : string,
 				public lastName : string,
 				public nationality: string,

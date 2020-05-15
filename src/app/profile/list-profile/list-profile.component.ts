@@ -14,6 +14,8 @@ export class ListProfileComponent implements OnInit {
 
 	jsonProfiles : Profile[] = [];
 
+	selectedProfile: Profile = null;
+
 	profilesSubscription : Subscription;
 
 	constructor(	private profileService: ProfileService,
@@ -24,16 +26,17 @@ export class ListProfileComponent implements OnInit {
 
 		this.profileService.findAllProfiles().subscribe(data => {
 			this.jsonProfiles = data;
-			console.log(JSON.stringify(data));
+			//console.log(JSON.stringify(data));
 		});
-	
+
 		console.log("ngOnInit listProfile end");
 	}
 
-	
+
 
 	onViewProfile(id : number){
-		this.router.navigate(['/ListProfile','view',id]);
+	  console.log(">>jsonProfiles[0].profileId : " + JSON.stringify(this.jsonProfiles[0].profileId));
+		this.router.navigate(['/ListProfile','view',this.jsonProfiles[id].profileId]);
 	}
 
 }

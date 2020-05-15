@@ -32,7 +32,7 @@ export class ProfileService {
 
     public findAllProfiles(): Observable<Profile[]>{
 		return this.http.get<Profile[]>(this.profileUrl).pipe(
-            map(response =>response)
+            map(response =>response._embedded.profiles)
          );
 	}
 }
