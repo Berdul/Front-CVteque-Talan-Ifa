@@ -25,7 +25,7 @@ export class ProfileService {
 	profilesSubject = new Subject<Profile[]>();
 
   constructor(private http: HttpClient) {
-    this.profileUrl = 'http://localhost:8080/profiles';
+    this.profileUrl = 'http://localhost:8080/api/profiles';
   }
 
   emitProfilesSubject(){

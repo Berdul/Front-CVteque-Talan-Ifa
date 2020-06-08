@@ -6,21 +6,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { SingleProfileComponent } from './profile/single-profile/single-profile.component';
 import { ListProfileComponent } from './profile/list-profile/list-profile.component';
+import { MenuComponent } from './menu/menu.component';
 
-const appRoutes: Routes =[
-	{ path:'homepage', component:HomepageComponent },
-  { path:'ListProfile', component:ListProfileComponent },
 
-  { path: 'ListProfile/view/:id', component: SingleProfileComponent },
+const appRoutes: Routes =[];
 
-	//{ path: '', redirectTo: 'homepage', pathMatch:'full' },
-	//{ path: '**', redirectTo: 'homepage' },
-];
 
 @NgModule({
   declarations: [
@@ -28,7 +23,8 @@ const appRoutes: Routes =[
     HomepageComponent,
     HeaderComponent,
     SingleProfileComponent,
-    ListProfileComponent
+    ListProfileComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

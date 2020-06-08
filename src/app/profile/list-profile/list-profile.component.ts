@@ -3,6 +3,7 @@ import { ProfileService } from '../../service/profile.service';
 import { Router } from '@angular/router';
 import { Profile } from '../../model/profile.model';
 
+
 import { Subscription } from 'rxjs-compat';
 import html2canvas from 'html2canvas';
 import * as jsPDF from "jspdf";

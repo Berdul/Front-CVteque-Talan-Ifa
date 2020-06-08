@@ -1,3 +1,49 @@
-.test{
-  min-height: 80vh;
+.container-fluid{
+  max-width: 90%;
+  height: 75vh;
+  border-right: 3px solid #f0f0f0;
+  border-bottom: 3px solid #f0f0f0;
+  border-left: 3px solid #f0f0f0;
+  box-shadow: 6px 8px 6px -10px gray;
 }
+
+.row {
+  height: 100%;
+}
+
+#profiles {
+  background: #f0f0f0;
+  padding: 5px;
+}
+
+
+.btn:hover{
+  background: none;
+  color: black;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+#profile{
+  background: #F8F8F8;
+}
+
+#profile:hover{
+  background: #F0F0F0;
+  box-shadow: 6px 8px 6px -10px gray;
+
+}
+
+.active {
+  background: red;
+}
+
+#profile_detail{
+  padding: 30px;
+}
+
+
