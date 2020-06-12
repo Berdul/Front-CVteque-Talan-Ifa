@@ -6,13 +6,6 @@ import { ProfileService } from '../../service/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../model/profile.model';
 
-/*
-
- *    ! OUTDATED FILE & COMPONENT!
-
- *     this template was used for another website architecture.
-
-*/
 
 
 @Component({
@@ -21,37 +14,30 @@ import { Profile } from '../../model/profile.model';
   styleUrls: ['./single-profile.component.scss']
 })
 export class SingleProfileComponent implements OnInit {
-
+  //fields
 	profile: Profile;
-
 	@ViewChild('screen', {static: false}) screen: ElementRef;
 
+	//constructor
 	constructor(private route: ActivatedRoute,
 				         private router: Router,
 				         private profileService: ProfileService,
 				         private elementRef: ElementRef) { }
 
 
-
+//OnInit
 	ngOnInit() {
 		const id = this.route.snapshot.params.id;
 		this.profileService.findProfileById(+id).subscribe(
-
 			data => {
 				console.log('>>data : ' + JSON.stringify(data));
 				this.profile = data;
 			}
 		);
-
 		this.profileService.emitProfilesSubject();
 		console.log('>>single-profile ngOnInit profile ' + id + ' : '  + this.profile);
 	}
 
-	/*
-	ngAfterViewInit(): void {
-        console.log(this.elRef.nativeElement.textContent);
-    }
-    */
 
 	onBack() {
 		this.router.navigate(['ListProfile']);

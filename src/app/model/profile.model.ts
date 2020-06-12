@@ -1,9 +1,6 @@
 export class Profile {
-  public _embedded : any;
 	public profileId: number;
-	public links: string[];
 	public photoFileName: string;
-	public profilePassword: string;
 
 	constructor(public firstName : string,
 				public lastName : string,
@@ -12,6 +9,5 @@ export class Profile {
 				public address: string,
 				public zip: number,
 				public phoneNumber: number,
-				public email: string,
-				public profileMainType: number){}
+				public email: string){}
 }

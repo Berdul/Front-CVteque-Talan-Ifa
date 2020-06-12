@@ -12,6 +12,9 @@ import { HeaderComponent } from './header/header.component';
 import { SingleProfileComponent } from './profile/single-profile/single-profile.component';
 import { ListProfileComponent } from './profile/list-profile/list-profile.component';
 import { MenuComponent } from './menu/menu.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 
 const appRoutes: Routes =[];
@@ -31,6 +34,10 @@ const appRoutes: Routes =[];
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ScrollingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

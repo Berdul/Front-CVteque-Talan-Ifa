@@ -1,37 +1,34 @@
+<!--Menu-->
 <app-menu></app-menu>
+<!--App-->
 <div class="container-fluid">
   <div class="row">
+    <!--Profiles List-->
    <div class="col-md-3 col-sm-4 list-group" id="profiles">
-     <!--Tri
-     <div ngbDropdown class="d-inline-block mx-auto">
-       <button class="btn btn-sm btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>Trier par ...</button>
-       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-         <button ngbDropdownItem>Ordre alphabétique</button>
-         <button ngbDropdownItem>Date d'ajout (croissant)</button>
-         <button ngbDropdownItem>Date d'ajout (décroissant)</button>
-       </div>
-     </div>-->
-    <div *ngFor="let profile of jsonProfiles; let i = index"
+     <!--Scroll-->
+     <cdk-virtual-scroll-viewport itemSize="100">
+    <li *cdkVirtualFor="let profile of jsonProfiles; let i = index"
          (click)="onViewProfile(i)"
-         style="cursor: pointer">
-      <div class="list-group-item  p-2 " id="profile" >
+         style="cursor: pointer" class="animate__animated animate__zoomIn">
+      <!-- A profile card-->
+      <div class="list-group-item p-2" id="profile"  [ngClass]="{activeUser: idProfileSelected === profile.profileId}">
         <div class="row">
-        <div class="col-4 my-auto">
-          <img src="{{profile?.photoFileName}}"/>
-        </div>
-        <div class="col-8">
-          <h4 class="list-group-item-heading">
-            {{ profile?.firstName }}  {{ profile?.lastName }}
-          </h4>
-          <p >
-            Titre
-          </p>
-        </div>
+          <div class="col-4 my-auto">
+            <img src="{{profile?.photoFileName}}" alt=""/>
+          </div>
+          <div class="col-8">
+            <h4 class="list-group-item-heading">
+              {{ profile?.firstName }}  {{ profile?.lastName }}
+            </h4>
+            <p >Titre</p>
+          </div>
         </div>
       </div>
-
-    </div>
+    </li>
+    </cdk-virtual-scroll-viewport>
   </div>
+
+    <!--Right part : profile selected view-->
     <div class="col-md-9 col-sm-8" id="profile_detail">
     <div *ngIf="isProfileSelected">
       <div id="screenId">
@@ -44,10 +41,10 @@
         <p>Email : {{ selectedProfile?.email }}</p>
         <p> N° profil : {{ selectedProfile?.profileId }} </p>
       </div>
-
+      <!--Export pdf-->
       <button class="btn btn-warning" (click)="onExport()">Exporter PDF</button>
     </div>
-
+    <!-- When no profile selected, display this-->
     <div *ngIf="!isProfileSelected">
       <h5 class="text-center font-weight-bold font-italic text-muted">Veuillez sélectionner un profil</h5>
     </div>
