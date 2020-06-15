@@ -1,0 +1,9 @@
+<div class="form-inline">
+    <input #myInput type = "text"
+        placeholder="Recherche profils ..."
+        class="form-control" 
+        (keyup.enter) = "doSearch(myInput.value)"/>
+
+    <button (click)="doSearch(myInput.value)" class="btn btn-outline-info my-2 my-sm-0" >Recherche</button>
+
+</div>

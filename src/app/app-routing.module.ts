@@ -6,11 +6,12 @@ import {SingleProfileComponent} from './profile/single-profile/single-profile.co
 
 
 const routes: Routes = [
-  { path:'', component:HomepageComponent },
+  {path:'search/:keyword', component:ListProfileComponent },
   { path:'homepage', component:HomepageComponent },
   { path:'ListProfile', component:ListProfileComponent },
   { path: 'ListProfile/view/:id', component: SingleProfileComponent },
   { path:'**', component:HomepageComponent },
+  {path:'', component:HomepageComponent }
 ];
 
 @NgModule({

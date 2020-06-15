@@ -15,6 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import { SearchComponent } from './components/search/search.component';
 
 
 const appRoutes: Routes =[];
@@ -28,6 +29,7 @@ const appRoutes: Routes =[];
     SingleProfileComponent,
     ListProfileComponent,
     MenuComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

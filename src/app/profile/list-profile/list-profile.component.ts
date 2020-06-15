@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { ProfileService } from '../../service/profile.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Profile } from '../../model/profile.model';
 
 
@@ -18,18 +18,44 @@ export class ListProfileComponent implements OnInit {
 	selectedProfile: Profile = null;
 	isProfileSelected : boolean = false;
 	idProfileSelected : number = null;
+	searchMode : boolean;
+
 
 
 	//Constructeur
-	constructor(	private profileService: ProfileService, private router:Router) {
+	constructor(	private profileService: ProfileService, private route:ActivatedRoute) {
   }
 
 	//OnInit
 	ngOnInit() {
-		console.log("ngOnInit listProfile begin");
-		this.profileService.findAllProfiles().subscribe(data => {
-			this.jsonProfiles = data;});
-		console.log("ngOnInit listProfile end");
+		this.route.paramMap.subscribe(() =>{
+			this.listProfiles();
+		});
+		
+	}
+
+
+	listProfiles(){
+
+		this.searchMode = this.route.snapshot.paramMap.has('keyword');
+
+		if(this.searchMode){
+			this.handleSearchProfiles();
+		}
+		else{
+		this.handleListProfiles();
+			}
+	}
+	handleSearchProfiles() {
+		
+		const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
+
+		//search for the profiles using keyword
+		this.profileService.searchProfiles(theKeyword).subscribe(
+			data =>{
+				this.jsonProfiles = data;
+			}
+		)
 	}
 
 //Méthode view Profile
@@ -57,6 +83,15 @@ export class ListProfileComponent implements OnInit {
     pdf.save('testPdf.pdf');
   }
 
+
+  handleListProfiles(){
+
+	console.log("ngOnInit listProfile begin");
+	this.profileService.findAllProfiles().subscribe(data => {
+		this.jsonProfiles = data;});
+	console.log("ngOnInit listProfile end");
+
+  }
 
 
 

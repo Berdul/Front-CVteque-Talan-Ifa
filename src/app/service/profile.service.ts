@@ -11,15 +11,16 @@ import { map } from 'rxjs/operators';
 })
 
 export class ProfileService {
+	
   //fields
 	private profiles: Profile[] = [] ;
-	private profileUrl : string;
+	private profileUrl : string ='http://localhost:8080/api/profiles';
 	profilesSubject = new Subject<Profile[]>();
 
 
 	//constructor
   constructor(private http: HttpClient) {
-    this.profileUrl = 'http://localhost:8080/api/profiles';
+    this.profileUrl;
   }
 
   //subject
@@ -40,6 +41,13 @@ export class ProfileService {
     return this.http.get<Profile>(this.profileUrl + "/" + id);
   }
 
+  searchProfiles(theKeyword: string): Observable<Profile[]> {
+    
+    const searchUrl =`${this.profileUrl}/search/findByLastNameContaining?lastName=${theKeyword}`;
+    return this.http.get<GetResponse>(searchUrl).pipe(
+      map(response => response._embedded.profiles)
+    );
+	}
 }
 
 //Interface
