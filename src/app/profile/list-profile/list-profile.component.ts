@@ -4,6 +4,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Profile } from '../../model/profile.model';
 
 
+import * as Docxtemplater from 'docxtemplater';
+import * as PizZip from 'pizzip';
+import PizZipUtils from 'pizzip/utils/index.js';
+import { saveAs } from 'file-saver';
+
+
 import * as jsPDF from "jspdf";
 
 
@@ -31,7 +37,7 @@ export class ListProfileComponent implements OnInit {
 		this.route.paramMap.subscribe(() =>{
 			this.listProfiles();
 		});
-		
+
 	}
 
 
@@ -47,7 +53,7 @@ export class ListProfileComponent implements OnInit {
 			}
 	}
 	handleSearchProfiles() {
-		
+
 		const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
 
 		//search for the profiles using keyword
@@ -93,6 +99,42 @@ export class ListProfileComponent implements OnInit {
 
   }
 
+  loadFile(url, callback) {
+    PizZipUtils.getBinaryContent(url, callback);
+  }
+
+  generate() {
+    this.loadFile('assets/template/template.docx', (
+      error,
+      content
+    ) => {
+      if (error) {
+        throw error;
+      }
+      const zip = new PizZip(content);
+      const doc = new Docxtemplater().loadZip(zip);
+      doc.setData(this.selectedProfile);
+      try {
+        doc.render();
+      } catch {
+        if (error.properties && error.properties.errors instanceof Array) {
+          const errorMessages = error.properties.errors
+            .map(() => {
+              return error.properties.explanation;
+            })
+            .join('\n');
+          console.log('errorMessages', errorMessages);
+        }
+        throw error;
+      }
+      const out = doc.getZip().generate({
+        type: 'blob',
+        mimeType:
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      });
+      saveAs(out, 'output.docx');
+    });
+  }
 
 
 

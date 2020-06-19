@@ -54,7 +54,7 @@ export class SingleProfileComponent implements OnInit {
     const div = document.getElementById('screenId');
 
     html2canvas(div).then((canvas) => {
-      var img = canvas.toDataURL("image/PNG");
+      var img = canvas.toDataURL('image/PNG');
       const pdf = new jsPDF('p', 'mm', 'a4', 1);
 
       pdf.addImage(img,'png',5,5,200,200,undefined, 'FAST');
@@ -64,6 +64,6 @@ export class SingleProfileComponent implements OnInit {
       pdf.save('testPdf.pdf');
     });
 
-	}
+  }
 
 }
